@@ -174,7 +174,7 @@ open class RTMPStream: NetStream {
         case localRecord
     }
 
-    enum ReadyState: UInt8 {
+    public enum ReadyState: UInt8 {
         case initialized = 0
         case open = 1
         case play = 2
@@ -249,7 +249,7 @@ open class RTMPStream: NetStream {
     }
 
     var id: UInt32 = RTMPStream.defaultID
-    var readyState: ReadyState = .initialized {
+    open var readyState: ReadyState = .initialized {
         didSet {
             guard oldValue != readyState else {
                 return
