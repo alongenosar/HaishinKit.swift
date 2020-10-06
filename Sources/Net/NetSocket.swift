@@ -113,7 +113,11 @@ open class NetSocket: NSObject {
     /// The instance determine to use the secure-socket layer (SSL) security level.
     open var securityLevel: StreamSocketSecurityLevel = .none
     /// The statistics of total outgoing bytes.
-    open private(set) var totalBytesOut: Atomic<Int64> = .init(0)
+    open private(set) var totalBytesOut: Atomic<Int64> = .init(0) {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "totalBytesOut"), object:  totalBytesOut.value)
+        }
+    }
     /// The statistics of total outgoing queued bytes.
     open private(set) var queueBytesOut: Atomic<Int64> = .init(0)
 
