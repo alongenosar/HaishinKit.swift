@@ -119,7 +119,11 @@ open class NetSocket: NSObject {
         }
     }
     /// The statistics of total outgoing queued bytes.
-    open private(set) var queueBytesOut: Atomic<Int64> = .init(0)
+    open private(set) var queueBytesOut: Atomic<Int64> = .init(0) {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "queueBytesOut"), object:  queueBytesOut.value)
+        }
+    }
 
     var inputStream: InputStream? {
         didSet {
