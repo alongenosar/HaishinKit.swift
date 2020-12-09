@@ -9,6 +9,12 @@ import SwiftPMSupport
 /// MPEG-2 TS (Transport Stream) Writer delegate
 public protocol TSWriterDelegate: class {
     func didOutput(_ data: Data)
+    func didWriteFile(path: String)
+}
+
+extension TSWriterDelegate {
+    func didOutput(_ data: Data) {}
+    func didWriteFile(path: String) {}
 }
 
 /// MPEG-2 TS (Transport Stream) Writer Foundation class
@@ -319,7 +325,7 @@ class TSFileWriter: TSWriter {
         let bundleIdentifier: String? = Bundle.main.bundleIdentifier
         let temp: String = bundleIdentifier == nil ? NSTemporaryDirectory() : NSTemporaryDirectory() + bundleIdentifier! + "/"
         #else
-        let temp: String = NSTemporaryDirectory()
+        let temp: String = NSTemporaryDirectory() + "/alon/"
         #endif
 
         if !fileManager.fileExists(atPath: temp) {
@@ -359,7 +365,7 @@ class TSFileWriter: TSWriter {
 
         currentFileHandle?.closeFile()
         currentFileHandle = try? FileHandle(forWritingTo: url)
-
+        delegate?.didWriteFile(path: temp)
         writeProgram()
         rotatedTimestamp = timestamp
     }
