@@ -12,7 +12,7 @@ open class HTTPStream: NetStream {
         }
     }
     private(set) var name: String?
-    lazy var tsWriter = TSFileWriter()
+    public lazy var tsWriter = TSFileWriter()
 
     open func publish(_ name: String?) {
         lockQueue.async {

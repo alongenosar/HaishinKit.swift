@@ -284,7 +284,7 @@ extension TSWriter: VideoEncoderDelegate {
     }
 }
 
-class TSFileWriter: TSWriter {
+public class TSFileWriter: TSWriter {
     static let defaultSegmentCount: Int = 3
     static let defaultSegmentMaxCount: Int = 12
 
@@ -380,7 +380,7 @@ class TSFileWriter: TSWriter {
         super.write(data)
     }
 
-    override func stopRunning() {
+    override public func stopRunning() {
         guard !isRunning.value else {
             return
         }
