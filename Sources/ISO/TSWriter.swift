@@ -325,7 +325,7 @@ public class TSFileWriter: TSWriter {
         let bundleIdentifier: String? = Bundle.main.bundleIdentifier
         let temp: String = bundleIdentifier == nil ? NSTemporaryDirectory() : NSTemporaryDirectory() + bundleIdentifier! + "/"
         #else
-        let temp: String = NSTemporaryDirectory() + "/alon/"
+        let temp: String =  NSTemporaryDirectory()
         #endif
 
         if !fileManager.fileExists(atPath: temp) {
