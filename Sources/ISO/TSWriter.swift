@@ -365,7 +365,7 @@ public class TSFileWriter: TSWriter {
 
         currentFileHandle?.closeFile()
         currentFileHandle = try? FileHandle(forWritingTo: url)
-        delegate?.didWriteFile(path: url.absoluteString )
+        delegate?.didWriteFile(path: url.absoluteString)
         writeProgram()
         rotatedTimestamp = timestamp
     }
