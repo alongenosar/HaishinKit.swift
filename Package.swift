@@ -13,7 +13,7 @@ let package = Package(
         .library(name: "HaishinKit", type: .dynamic, targets: ["HaishinKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/shogo4405/Logboard.git", from: "2.2.1")
+      
     ],
     targets: [
         .target(name: "SwiftPMSupport"),
